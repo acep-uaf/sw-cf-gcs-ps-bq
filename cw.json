@@ -1,0 +1,33 @@
+{
+    "main": {
+      "params": [
+        "event"
+      ],
+      "steps": [
+        {
+          "decode_pubsub_message": {
+            "assign": [
+              {
+                "base64": "${base64.decode(event.data.message.data)}"
+              },
+              {
+                "message": "${text.decode(base64)}"
+              }
+            ]
+          }
+        },
+        {
+          "invoke_http_function": {
+            "call": "http.post",
+            "args": {
+              "url": "https://REGION-PROJECT_ID.cloudfunctions.net/FUNCTION_NAME",
+              "body": {
+                "payload": "${message}"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+  
