@@ -1,7 +1,6 @@
-from google.cloud import bigquery
+from google.cloud import bigquery, pubsub_v1
 import logging
 from google.api_core.exceptions import NotFound, Forbidden
-
 import base64
 import json
 
@@ -23,6 +22,8 @@ def bq_load_from_gcs(event, context):
         bigquery_uri = f'{project_id}:{dataset_id}.{table_id}'
 
         client = bigquery.Client(project=project_id)
+        publisher = pubsub_v1.PublisherClient()
+        topic_path = publisher.topic_path(project_id, 'sw-cf-bq-pp-dt-rs')
 
         # Check if the dataset exists and create if it doesn't
         try:
@@ -70,12 +71,19 @@ def bq_load_from_gcs(event, context):
         destination_table = client.get_table(table_ref)
         print(f'Loaded {destination_table.num_rows} rows to {bigquery_uri}.')
 
+        message = {
+            'project_id': project_id,
+            'dataset_id': dataset_id,
+            'table_id' : table_id,
+        }
+        
+        try:
+            publish_message = publisher.publish(topic_path, json.dumps(message).encode('utf-8'))
+            publish_message.result()
+        except Exception as e:
+            print(f'An error occurred when trying to publish message: {str(e)}')
+            raise
+
     except Forbidden as e:
         print(f'Error occurred: {str(e)}. Please check the Cloud Function has necessary permissions.')
         raise
-
-    except Exception as e:
-        print(f'An unexpected error occurred: {str(e)}')
-        raise
-
-
