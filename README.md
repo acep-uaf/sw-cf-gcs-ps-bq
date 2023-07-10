@@ -6,7 +6,7 @@ The `sw-cf-gcs-ps-bq` is a Cloud Function designed to ingest data from a Google 
 
 ### Description
 
-The Cloud Function `sw-cf-gcs-ps-bq` is written in Python and uses the Google Cloud `bigquery` and `pubsub` libraries to interact with BigQuery and Pub/Sub. The function is triggered by a Pub/Sub topic and is responsible for ingesting data from a GCS bucket into a BigQuery table, and then publishing a message to another Pub/Sub topic.
+The gen 2 Cloud Function `sw-cf-gcs-ps-bq` is written in Python and uses the Google Cloud `bigquery` and `pubsub` libraries to interact with BigQuery and Pub/Sub. The function is triggered by a Pub/Sub topic and is responsible for ingesting data from a GCS bucket into a BigQuery table, and then publishing a message to another Pub/Sub topic.
 
 ### Deployment
 
@@ -19,7 +19,7 @@ Deploy this Cloud Function by running the `eiedeploy.sh` shell script:
 
 This script wraps the following `gcloud` command:
 
-bash
+```bash
 gcloud functions deploy sw-cf-gcs-ps-bq \
   --gen2 \
   --runtime=python311 \
@@ -29,6 +29,7 @@ gcloud functions deploy sw-cf-gcs-ps-bq \
   --memory 16384MB \
   --timeout 540s  \
   --trigger-topic sw-df-cf-bq-ingest
+```
 
 
 ### Dependencies
