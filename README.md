@@ -12,8 +12,9 @@ The Cloud Function `sw-cf-gcs-ps-bq` is written in Python and uses the Google Cl
 
 Deploy this Cloud Function by running the `eiedeploy.sh` shell script:
 
-bash
+```bash
 ./eiedeploy.sh
+```
 
 
 This script wraps the following `gcloud` command:
