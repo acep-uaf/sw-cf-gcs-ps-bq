@@ -3,6 +3,7 @@ import logging
 from google.api_core.exceptions import NotFound, Forbidden
 import base64
 import json
+import os
 
 def bq_load_from_gcs(event, context):
     print(f'Received event: {event}')  
@@ -23,7 +24,8 @@ def bq_load_from_gcs(event, context):
 
         client = bigquery.Client(project=project_id)
         publisher = pubsub_v1.PublisherClient()
-        topic_path = publisher.topic_path(project_id, 'sw-cf-bq-pp-dt-rs')
+        pubsub_topic = os.getenv('PUBSUB_TOPIC')
+        topic_path = publisher.topic_path(project_id, pubsub_topic)
 
         # Check if the dataset exists and create if it doesn't
         try:
