@@ -6,4 +6,5 @@ gcloud functions deploy sw-cf-gcs-ps-bq \
   --entry-point=bq_load_from_gcs \
   --memory 16384MB \
   --timeout 540s  \
-  --trigger-topic sw-df-cf-bq-ingest
+  --trigger-topic sw-df-cf-bq-ingest \
+  --set-env-vars PUBSUB_TOPIC=sw-cf-bq-pp-dt-rs
