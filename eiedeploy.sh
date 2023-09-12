@@ -8,6 +8,7 @@ gcloud functions deploy sw-cf-gcs-ps-bq \
   --$GEN2 \
   --runtime=$RUNTIME \
   --region=$REGION \
+  --service-account=$SERVICE_ACCOUNT \
   --source=$SOURCE \
   --entry-point=$ENTRY_POINT \
   --memory=$MEMORY \
