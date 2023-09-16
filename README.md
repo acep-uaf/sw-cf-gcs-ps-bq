@@ -6,7 +6,7 @@ The `sw-cf-gcs-ps-bq` is a Cloud Function designed to ingest data from a Google 
 
 ### Description
 
-The gen 2 Cloud Function `bq_load_from_gcs` is a Python function that leverages the `google.cloud.bigquery` and `google.cloud.pubsub_v1` libraries to interact with Google's BigQuery and Pub/Sub services. The function is initiated by an event from a Pub/Sub topic.
+The gen 2 Cloud Function `bq_load_from_gcs` is a Python function that leverages the `google.cloud.bigquery`, `google-cloud-storage` and `google.cloud.pubsub_v1` libraries to interact with Google's BigQuery and Pub/Sub services. The function is initiated by an event from a Pub/Sub topic.
 
 Upon receiving the event, the function decodes the base64-encoded data from the event payload and loads the resulting JSON string into a Python dictionary. From this dictionary, it fetches crucial information such as the `project_id`, `original_date`, `dataset_id`, `table_id`, and `destination_bucket`.
 
