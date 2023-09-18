@@ -24,59 +24,6 @@ In summary, the `bq_load_from_gcs` function serves as a data pipeline connector 
 
 ### Deployment
 
-Before deploying the Cloud Function, ensure that the `eiedeploy.env` file contains the necessary environment variables, as the deployment script sources this file. This file should define values for:
-
-- `GEN2`
-- `RUNTIME`
-- `REGION`
-- `SERVICE_ACCOUNT`
-- `SOURCE`
-- `ENTRY_POINT`
-- `MEMORY`
-- `TIMEOUT`
-- `TRIGGER_TOPIC`
-- `PUBSUB_TOPIC`
-
- ### Environment Variable Descriptions
- 
- Below are descriptions for each environment variable used in the deployment script:
- 
- - **GEN2**=`<value>`:
-   - Description: Specifies the generation of the Cloud Function to deploy. Google Cloud Functions has multiple generations and this denotes which one you intend to use.
- 
- - **RUNTIME**=`<value>`:
-   - Description: Specifies the runtime environment in which the Cloud Function executes. For example: `python311` for Python 3.11.
- 
- - **REGION**=`<value>`:
-   - Description: The Google Cloud region where the Cloud Function will be deployed and run. Example values are `us-west1`, `europe-west1`, etc.
- 
- - **SERVICE_ACCOUNT**=`<value>`:
-   - Description: The service account under which the Cloud Function will run. This defines the permissions that the Cloud Function has during execution.
- 
- - **SOURCE**=`<value>`:
-   - Description: Path to the source code of the Cloud Function. Typically, this points to a directory containing all the necessary files for the function.
- 
- - **ENTRY_POINT**=`<value>`:
-   - Description: Specifies the name of the function or method within the source code to be executed when the Cloud Function is triggered.
- 
- - **MEMORY**=`<value>`:
-   - Description: The amount of memory to allocate for the Cloud Function. This is denoted in megabytes, e.g., `16384MB`.
- 
- - **TIMEOUT**=`<value>`:
-   - Description: The maximum duration the Cloud Function is allowed to run before it is terminated. Expressed in seconds, e.g., `540s`.
- 
- - **TRIGGER_TOPIC**=`<value>`:
-   - Description: The Google Cloud topic under which the Cloud Function is subscribed.
- 
- - **PUBSUB_TOPIC**=`<value>`:
-   - Description: The name of the Pub/Sub topic to which the Cloud Function publishes messages.
- 
- Ensure to set each `<value>` in the `eiedeploy.env` file appropriately before deploying the Cloud Function. **Note:** For security reasons, do not cheeck the `eiedeploy.env` with    set values into a public repository such as github.
-
-### Deployment
- 
-Before deploying, ensure you've configured the `eiedeploy.env` file with the appropriate values.
- 
 Deploy the Cloud Function with the provided shell script:
 
 ```bash
@@ -105,7 +52,62 @@ gcloud functions deploy sw-cf-gcs-ps-bq \
   --trigger-topic=$TRIGGER_TOPIC \
   --set-env-vars PUBSUB_TOPIC=$PUBSUB_TOPIC
 ```
+ ### .env File Configuration
 
+Before deploying the Cloud Function, ensure that the `eiedeploy.env` file contains the necessary environment variables, as the deployment script sources this file. This file should define values for:
+
+```
+  GEN2=<value>
+  RUNTIME=<value>
+  REGION=<value>
+  SERVICE_ACCOUNT=<value>
+  SOURCE=<value>
+  ENTRY_POINT=<value>
+  TRIGGER_EVENT_FILTER1=<value>
+  TRIGGER_EVENT_FILTER2=<value>
+  MEMORY=<value>
+  TIMEOUT=<value>
+  PROJECT_ID=<value>
+  TOPIC_NAME=<value>
+  FILE_EXTENSION=<value>
+ ```
+ Replace `<value>` with the appropriate values for your deployment.
+
+ ### Environment Variable Descriptions
+ 
+ Below are descriptions for each environment variable used in the deployment script:
+ 
+ - **GEN2**=`<value>`:
+   - Description: Specifies the generation of the Cloud Function to deploy.  For example: `gen2` when you intend to deploy a second generation Google Cloud Function.
+ 
+ - **RUNTIME**=`<value>`:
+   - Description: Specifies the runtime environment in which the Cloud Function executes. For example: `python311` for Python 3.11.
+ 
+ - **REGION**=`<value>`:
+   - Description: The Google Cloud region where the Cloud Function will be deployed and run. Example values are `us-west1`, `europe-west1`, etc.
+ 
+ - **SERVICE_ACCOUNT**=`<value>`:
+   - Description: The service account under which the Cloud Function will run. This defines the permissions that the Cloud Function has at deployment.
+ 
+ - **SOURCE**=`<value>`:
+   - Description: Path to the source code of the Cloud Function. Typically, this points to a directory containing all the necessary files for the function.
+ 
+ - **ENTRY_POINT**=`<value>`:
+   - Description: Specifies the name of the function or method within the source code to be executed when the Cloud Function is triggered.
+ 
+ - **MEMORY**=`<value>`:
+   - Description: The amount of memory to allocate for the Cloud Function. This is denoted in megabytes, e.g., `16384MB`.
+ 
+ - **TIMEOUT**=`<value>`:
+   - Description: The maximum duration the Cloud Function is allowed to run before it is terminated. Expressed in seconds, e.g., `540s`.
+ 
+ - **TRIGGER_TOPIC**=`<value>`:
+   - Description: The Google Cloud topic under which the Cloud Function is subscribed.
+ 
+ - **PUBSUB_TOPIC**=`<value>`:
+   - Description: The name of the Pub/Sub topic to which the Cloud Function publishes messages.
+ 
+ Set each `<value>` in the `eiedeploy.env` file appropriately before deploying the Cloud Function. **Note:** For security reasons, do not cheeck the `eiedeploy.env` with values set into a public repository such as github.
 
 ### Dependencies
 
