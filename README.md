@@ -63,13 +63,10 @@ Before deploying the Cloud Function, ensure that the `eiedeploy.env` file contai
   SERVICE_ACCOUNT=<value>
   SOURCE=<value>
   ENTRY_POINT=<value>
-  TRIGGER_EVENT_FILTER1=<value>
-  TRIGGER_EVENT_FILTER2=<value>
   MEMORY=<value>
   TIMEOUT=<value>
-  PROJECT_ID=<value>
-  TOPIC_NAME=<value>
-  FILE_EXTENSION=<value>
+  TRIGGER_TOPIC=<value>
+  PUBSUB_TOPIC=<value>
  ```
  Replace `<value>` with the appropriate values for your deployment.
 
