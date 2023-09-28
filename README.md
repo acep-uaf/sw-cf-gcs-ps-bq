@@ -1,4 +1,9 @@
 # SW-CF-GCS-PS-BQ Cloud Function
+<br>
+
+Introducing the `sw-cf-gcs-ps-bq` repository—a key element of the ACEP SW Data Pipeline. This component is tailored to initiate the ETL jobs, particularly the BigQuery ingestion once the unpacked data is stored in the secondary GCP bucket.
+
+For an in-depth understanding of the entire data pipeline and this repository's role, please consult the [ACEP SW Data Pipeline Overview](https://github.com/acep-uaf/sw-stack) repository.
 
 The `sw-cf-gcs-ps-bq` is a Cloud Function designed to ingest data from a Google Cloud Storage (GCS) bucket, load it into a BigQuery table, and then publish a message to a Pub/Sub topic.
 
@@ -56,7 +61,7 @@ gcloud functions deploy sw-cf-gcs-ps-bq \
 
 Before deploying the Cloud Function, ensure that the `eiedeploy.env` file contains the necessary environment variables, as the deployment script sources this file. This file should define values for:
 
-```
+```bash
   GEN2=<value>
   RUNTIME=<value>
   REGION=<value>
