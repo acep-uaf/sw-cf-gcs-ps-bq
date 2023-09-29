@@ -113,4 +113,21 @@ Before deploying the Cloud Function, ensure that the `eiedeploy.env` file contai
 
 ### Dependencies
 
-The Cloud Function's dependencies are listed in the `requirements.txt` file and include the `google-cloud-pubsub`, `google-cloud-storage`, and `google-cloud-bigquery` packages.
+The Cloud Function's dependencies are listed in the `requirements.txt` file and include:
+- `google-cloud-pubsub` 
+- `google-cloud-storage` 
+- `google-cloud-bigquery`
+
+### Conclusion
+
+---
+
+The `sw-cf-gcs-ps-bq` repository stands as a cornerstone of the [ACEP SW Data Pipeline](https://github.com/acep-uaf/sw-stack). This Cloud Function is meticulously crafted to foster interaction with Google Cloud Storage (GCS), BigQuery, and Pub/Sub, facilitating an automated process of ingesting data into BigQuery once it's available in a GCS bucket.
+
+With this repository, the synergy between cloud storage, event-driven computing, and data warehousing on the Google Cloud Platform is vividly demonstrated. As data becomes available or is modified in the bucket, `sw-cf-gcs-ps-bq` stands vigilant, swiftly initiating ETL jobs and signaling through Pub/Sub. This ensures that any connected services or systems can respond immediately, augmenting the automation and responsiveness of the entire data pipeline.
+
+We invite the open-source community to delve deep into this repository, appreciate its intricacies, and contribute towards refining it further. For comprehensive licensing details, please see the [LICENSE](https://github.com/acep-uaf/sw-cf-gcs-ps-bq/blob/main/LICENSE) file situated in the main directory of the repository.
+
+Your engagement with this solution is valued, and we trust that it will substantially enhance your data processing endeavors within the GCP framework.
+
+---
